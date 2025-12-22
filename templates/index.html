@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-container">
+        <div class="hero-grid">
+            <div class="hero-text">
+                <h1>MVHS Tech Internship</h1>
+                <p class="hero-subtitle">Student-led technology support, AI innovation, and digital learning at Mountain View High School.</p>
+            </div>
+            <div class="hero-image">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="MVHS Logo" class="hero-logo">
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section class="home-section">
+    <div class="home-card home-card-wide">
+        <div class="home-card-split">
+            <!-- LEFT: TEXT -->
+            <div class="home-card-content">
+                <h2 class="home-card-title">Upcoming Events</h2>
+
+                <h3 class="home-card-eyebrow">FETC 2026</h3>
+                <p>
+                    The MVHS Tech Internship has been invited to speak at the Future of Education
+                    Technology Conference (FETC) in January 2026. Our team will deliver three sessions,
+                    sharing insights on student-led innovation, real-world implementation of AI tools,
+                    and practical frameworks for supporting technology adoption in schools and districts.
+                </p>
+                <p>
+                    FETC is one of the nation's largest and most influential ed-tech conferences,
+                    bringing together educators, industry leaders, and innovators from around the world.
+                    We're honored to represent student leadership on a national stage and contribute to
+                    shaping the future of educational technology.
+                </p>
+
+                <div class="home-card-links">
+                    <a href="/donations" class="home-link-accent">Support Us →</a>
+                    <a href="https://www.fetc.org/" target="_blank" class="home-link-accent">Visit FETC →</a>
+                </div>
+            </div>
+
+            <!-- RIGHT: IMAGE -->
+            <div class="home-card-media">
+                <img
+                    src="{{ url_for('static', filename='images/fetc-placeholder.jpg') }}"
+                    alt="Students presenting at an education technology conference"
+                />
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="home-section">
+    <div class="home-card home-card-wide">
+        <h2 class="home-card-title">What We Do</h2>
+        <div class="whatwedo-content">
+            <div class="whatwedo-image">
+                <!-- Placeholder for image -->
+            </div>
+            <div class="whatwedo-list">
+                <ul class="whatwedo-bullets">
+                    <li>Building real student-led technology and tools</li>
+                    <li>Running hands-on community and campus events</li>
+                    <li>Contributing to national discussions on AI in education</li>
+                    <li>Researching and testing emerging technologies</li>
+                    <li>Partnering with organizations to expand innovation</li>
+                    <li>Improving how students experience modern learning environments</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="call-to-action">
+    <a href="/support" class="btn-primary">Support Our Work</a>
+</section>
+{% endblock %}
