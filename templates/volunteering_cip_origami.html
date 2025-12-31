@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}CIP Origami Workshops - Cinty Lin{% endblock %}
+
+{% block content %}
+<div class="volunteering-section">
+    <h1 style="font-family: var(--font-display); color: var(--primary); text-align: center; margin-bottom: var(--spacing-xl); font-size: 2.5rem;">CIP Origami Workshops</h1>
+    
+    <div class="volunteering-card">
+        <p>
+            Leading origami workshops at CIP has been one of the most meaningful experiences 
+            in my volunteer work. What started as teaching a craft has evolved into deep, 
+            meaningful connections with the seniors I work with.
+        </p>
+        <p>
+            Even though I only see them a few times a month for about an hour each session, 
+            the relationships we've built are profound. The seniors feel comfortable opening 
+            up to me, sharing stories, and treating me like family. There's one senior in 
+            particular who I speak Mandarin and Taiwanese with, and she often shares personal 
+            stories with me, treating me like her granddaughter.
+        </p>
+        <p>
+            These connections remind me that meaningful relationships don't require constant 
+            presence—they're built on genuine care, respect, and the willingness to listen 
+            and connect across generations.
+        </p>
+        
+        <!-- Infinite Canvas for Photos -->
+        <div class="infinite-canvas">
+            <div class="canvas-content">
+                <div class="canvas-photos">
+                    <img src="{{ url_for('static', filename='images/cip/origami1.jpg') }}" alt="Origami Workshop Photo 1">
+                    <img src="{{ url_for('static', filename='images/cip/origami2.jpg') }}" alt="Origami Workshop Photo 2">
+                    <img src="{{ url_for('static', filename='images/cip/origami3.jpg') }}" alt="Origami Workshop Photo 3">
+                    <img src="{{ url_for('static', filename='images/cip/origami4.jpg') }}" alt="Origami Workshop Photo 4">
+                    <img src="{{ url_for('static', filename='images/cip/origami5.jpg') }}" alt="Origami Workshop Photo 5">
+                    <img src="{{ url_for('static', filename='images/cip/origami6.jpg') }}" alt="Origami Workshop Photo 6">
+                    <img src="{{ url_for('static', filename='images/cip/origami7.jpg') }}" alt="Origami Workshop Photo 7">
+                    <img src="{{ url_for('static', filename='images/cip/origami8.jpg') }}" alt="Origami Workshop Photo 8">
+                    <img src="{{ url_for('static', filename='images/cip/origami9.jpg') }}" alt="Origami Workshop Photo 9">
+                    <img src="{{ url_for('static', filename='images/cip/origami10.jpg') }}" alt="Origami Workshop Photo 10">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

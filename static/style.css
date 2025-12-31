@@ -1,0 +1,1062 @@
+/* ============================================
+   CSS Variables - Grey Blue Theme
+   ============================================ */
+:root {
+    /* Light Mode Colors - Grey Blue Palette */
+    --primary: #7c98b3;           /* Main blue */
+    --primary-light: #accbe1;     /* Light blue */
+    --primary-lighter: #cee5f2;   /* Very light blue */
+    --primary-dark: #637081;      /* Darker blue-gray */
+    --accent: #b3c5d7;            /* Light blue-gray accent */
+    --bg-primary: #d8e1e9;        /* Very light blue-gray background */
+    --bg-secondary: #ffffff;      /* White */
+    --text-dark: #161925;         /* Very dark blue-black text */
+    --text-light: #637081;        /* Medium blue-gray text */
+    --border-color: #b3c5d7;      /* Light blue-gray border */
+    
+    /* Dark Mode Colors - Grey Blue Palette */
+    --dark-bg-primary: #161925;   /* Very dark blue-black */
+    --dark-bg-secondary: #23395b; /* Dark blue */
+    --dark-text-primary: #d8e1e9; /* Very light blue-gray text */
+    --dark-text-secondary: #b3c5d7; /* Light blue-gray text */
+    --dark-border: #637081;      /* Medium blue-gray border */
+    --dark-primary: #7c98b3;     /* Main blue for dark mode */
+    --dark-primary-light: #accbe1; /* Light blue for dark mode */
+    
+    /* Typography */
+    --font-primary: 'Sen', sans-serif;
+    --font-display: 'Sen', sans-serif;
+    
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 3rem;
+    --spacing-xl: 4rem;
+    
+    /* Transitions */
+    --transition: all 0.3s ease;
+}
+
+/* ============================================
+   Base Styles
+   ============================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--bg-primary);
+    color: var(--text-dark);
+    line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    overflow-x: hidden;
+}
+
+/* Hide custom cursor on mobile/touch devices */
+@media (hover: hover) and (pointer: fine) {
+    body {
+        cursor: none; /* Hide default cursor only on devices with precise pointing */
+    }
+}
+
+body.dark-mode {
+    background-color: var(--dark-bg-primary);
+    color: var(--dark-text-primary);
+}
+
+/* ============================================
+   Custom Cursor (Hachiware - Chiikawa Themed)
+   ============================================ */
+/* 
+ * TO CHANGE YOUR CURSOR IMAGE:
+ * 1. Upload your cursor images to: static/images/cursors/
+ *    - Normal cursor: hachiware-cursor.png (or .gif, .svg)
+ *    - Hover cursor: hachiware-cursor-hover.png (or .gif, .svg)
+ * 2. Update the background-image URLs below to match your file names
+ * 3. Adjust the width and height to match your image dimensions
+ * 4. The cursor will move instantly (like a normal cursor) - no smooth animation
+ */
+
+.cursor-custom {
+    width: 32px;  /* CHANGE THIS to match your cursor image width */
+    height: 32px; /* CHANGE THIS to match your cursor image height */
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    /* 
+     * Cursor image is set in base.html template using Flask's url_for
+     * Update the image paths in templates/base.html in the <style> tag
+     */
+    /* background-image will be set via inline styles in base.html */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: none; /* Hidden by default, shown only on devices with precise pointing */
+    /* No transition for instant movement like normal cursor */
+    transition: none;
+}
+
+/* Show custom cursor only on devices with precise pointing (desktop) */
+@media (hover: hover) and (pointer: fine) {
+    .cursor-custom {
+        display: block;
+    }
+}
+
+/* Hover state - cursor changes when hovering over interactive elements */
+.cursor-custom.cursor-hover {
+    /* 
+     * Hover cursor image is set in base.html template using Flask's url_for
+     * Update the image paths in templates/base.html in the <style> tag
+     */
+    /* background-image will be set via inline styles in base.html */
+    /* Optionally scale up on hover - adjust or remove as needed */
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* ============================================
+   Container
+   ============================================ */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+/* ============================================
+   Header & Navigation
+   ============================================ */
+header {
+    background-color: var(--bg-secondary);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: var(--transition);
+}
+
+body.dark-mode header {
+    background-color: var(--dark-bg-secondary);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-sm) 0;
+}
+
+.logo-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.logo-text {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary);
+    transition: var(--transition);
+}
+
+body.dark-mode .logo-text {
+    color: var(--primary-light);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: var(--spacing-md);
+    align-items: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 500;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: 8px;
+    transition: var(--transition);
+    position: relative;
+}
+
+body.dark-mode .nav-links a {
+    color: var(--dark-text-primary);
+}
+
+.nav-links a:hover {
+    color: var(--primary);
+    background-color: rgba(124, 152, 179, 0.1);
+}
+
+body.dark-mode .nav-links a:hover {
+    color: var(--primary-light);
+    background-color: rgba(172, 203, 225, 0.2);
+}
+
+.nav-links a.active {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+body.dark-mode .nav-links a.active {
+    color: var(--primary-light);
+}
+
+/* Dropdown Menu Styles */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--bg-secondary);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    padding: var(--spacing-xs) 0;
+    margin-top: var(--spacing-xs);
+    min-width: 200px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+    z-index: 1000;
+}
+
+body.dark-mode .dropdown-menu {
+    background-color: var(--dark-bg-secondary);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.dropdown:hover .dropdown-menu,
+.dropdown.active .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-menu li {
+    margin: 0;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    color: var(--text-dark);
+    text-decoration: none;
+    transition: var(--transition);
+    border-radius: 0;
+}
+
+body.dark-mode .dropdown-menu a {
+    color: var(--dark-text-primary);
+}
+
+.dropdown-menu a:hover {
+    background-color: rgba(124, 152, 179, 0.1);
+    color: var(--primary);
+}
+
+body.dark-mode .dropdown-menu a:hover {
+    background-color: rgba(172, 203, 225, 0.2);
+    color: var(--primary-light);
+}
+
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.theme-toggle {
+    background: none;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.theme-toggle:hover {
+    background-color: var(--primary);
+    color: white;
+}
+
+body.dark-mode .theme-toggle {
+    border-color: var(--primary-light);
+    color: var(--primary-light);
+}
+
+body.dark-mode .theme-toggle:hover {
+    background-color: var(--primary-light);
+    color: var(--dark-bg-primary);
+}
+
+.logout-btn {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    background-color: var(--primary);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+.logout-btn:hover {
+    background-color: var(--primary-dark);
+}
+
+body.dark-mode .logout-btn {
+    background-color: var(--primary-light);
+}
+
+body.dark-mode .logout-btn:hover {
+    background-color: var(--primary);
+}
+
+/* ============================================
+   Main Content
+   ============================================ */
+.site-main {
+    min-height: calc(100vh - 200px);
+    padding: var(--spacing-lg) 0;
+}
+
+/* ============================================
+   Home Page Styles
+   ============================================ */
+.home-hero {
+    text-align: center;
+    padding: var(--spacing-xl) 0;
+    margin-bottom: var(--spacing-lg);
+}
+
+.home-hero h1 {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    color: var(--primary);
+    margin-bottom: var(--spacing-sm);
+}
+
+body.dark-mode .home-hero h1 {
+    color: var(--primary-light);
+}
+
+.hero-photo {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--primary);
+    margin: var(--spacing-md) auto;
+    display: block;
+    box-shadow: 0 10px 30px rgba(124, 152, 179, 0.3);
+}
+
+body.dark-mode .hero-photo {
+    border-color: var(--primary-light);
+}
+
+.bio-section {
+    max-width: 800px;
+    margin: var(--spacing-lg) auto;
+    padding: var(--spacing-md);
+    background-color: var(--bg-secondary);
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+body.dark-mode .bio-section {
+    background-color: var(--dark-bg-secondary);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.bio-section h2 {
+    font-family: var(--font-display);
+    color: var(--primary);
+    margin-bottom: var(--spacing-md);
+}
+
+body.dark-mode .bio-section h2 {
+    color: var(--primary-light);
+}
+
+/* Global heading styles for pages - ensures dark mode works */
+h1[style*="color: var(--primary)"] {
+    color: var(--primary) !important;
+}
+
+body.dark-mode h1[style*="color: var(--primary)"] {
+    color: var(--primary-light) !important;
+}
+
+/* Ensure inline text-light styles work in dark mode */
+p[style*="color: var(--text-light)"],
+ul[style*="color: var(--text-light)"] {
+    color: var(--text-light);
+}
+
+body.dark-mode p[style*="color: var(--text-light)"],
+body.dark-mode ul[style*="color: var(--text-light)"] {
+    color: var(--dark-text-secondary) !important;
+}
+
+.bio-section p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-light);
+    margin-bottom: var(--spacing-sm);
+}
+
+body.dark-mode .bio-section p {
+    color: var(--dark-text-secondary);
+}
+
+.music-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-lg);
+    margin: var(--spacing-xl) 0;
+}
+
+.music-card {
+    padding: var(--spacing-md);
+    background-color: var(--bg-secondary);
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+body.dark-mode .music-card {
+    background-color: var(--dark-bg-secondary);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.music-card h2 {
+    font-family: var(--font-display);
+    color: var(--primary);
+    margin-bottom: var(--spacing-md);
+    font-size: 1.8rem;
+}
+
+body.dark-mode .music-card h2 {
+    color: var(--primary-light);
+}
+
+.music-card.left {
+    text-align: left;
+}
+
+.music-card.right {
+    text-align: right;
+}
+
+.spotify-embed {
+    width: 100%;
+    border-radius: 12px;
+    margin-top: var(--spacing-sm);
+}
+
+.hobbies-links {
+    margin: var(--spacing-xl) 0;
+    text-align: center;
+}
+
+.hobbies-links h2 {
+    font-family: var(--font-display);
+    color: var(--primary);
+    margin-bottom: var(--spacing-md);
+    font-size: 2rem;
+}
+
+body.dark-mode .hobbies-links h2 {
+    color: var(--primary-light);
+}
+
+.hobbies-list {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+}
+
+.hobby-link {
+    padding: var(--spacing-sm) var(--spacing-md);
+    background-color: var(--primary);
+    color: white;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 500;
+    transition: var(--transition);
+    display: inline-block;
+}
+
+.hobby-link:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(124, 152, 179, 0.4);
+}
+
+body.dark-mode .hobby-link {
+    background-color: var(--primary-light);
+}
+
+body.dark-mode .hobby-link:hover {
+    background-color: var(--primary);
+}
+
+/* ============================================
+   Research Page Styles
+   ============================================ */
+.research-section {
+    margin-bottom: var(--spacing-xl);
+}
+
+.research-card {
+    background-color: var(--bg-secondary);
+    border-radius: 20px;
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+body.dark-mode .research-card {
+    background-color: var(--dark-bg-secondary);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.research-card h2 {
+    font-family: var(--font-display);
+    color: var(--primary);
+    margin-bottom: var(--spacing-md);
+    font-size: 2rem;
+}
+
+body.dark-mode .research-card h2 {
+    color: var(--primary-light);
+}
+
+.research-card p {
+    color: var(--text-light);
+    line-height: 1.8;
+    margin-bottom: var(--spacing-md);
+}
+
+body.dark-mode .research-card p {
+    color: var(--dark-text-secondary);
+}
+
+.pdf-embed {
+    width: 100%;
+    height: 600px;
+    border: none;
+    border-radius: 12px;
+    margin: var(--spacing-md) 0;
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 12px;
+    margin: var(--spacing-md) 0;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.slideshow-container {
+    margin: var(--spacing-md) 0;
+}
+
+.slideshow-container iframe {
+    width: 100%;
+    height: 500px;
+    border: none;
+    border-radius: 12px;
+}
+
+.doi-link {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+body.dark-mode .doi-link {
+    color: var(--primary-light);
+}
+
+.doi-link:hover {
+    text-decoration: underline;
+}
+
+/* ============================================
+   Volunteering Page Styles
+   ============================================ */
+.volunteering-section {
+    margin-bottom: var(--spacing-xl);
+}
+
+.volunteering-section h1 {
+    font-family: var(--font-display);
+    color: var(--primary);
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+    font-size: 2.5rem;
+}
+
+body.dark-mode .volunteering-section h1 {
+    color: var(--primary-light);
+}
+
+.volunteering-card {
+    background-color: var(--bg-secondary);
+    border-radius: 20px;
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+body.dark-mode .volunteering-card {
+    background-color: var(--dark-bg-secondary);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.volunteering-card h2 {
+    font-family: var(--font-display);
+    color: var(--primary);
+    margin-bottom: var(--spacing-md);
+    font-size: 2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+body.dark-mode .volunteering-card h2 {
+    color: var(--primary-light);
+}
+
+.volunteering-card h2 i {
+    transition: transform 0.3s ease;
+}
+
+.volunteering-card.active h2 i {
+    transform: rotate(180deg);
+}
+
+.volunteering-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.volunteering-card.active .volunteering-content {
+    max-height: 5000px;
+}
+
+.volunteering-content p {
+    color: var(--text-light);
+    line-height: 1.8;
+    margin-bottom: var(--spacing-md);
+}
+
+body.dark-mode .volunteering-content p {
+    color: var(--dark-text-secondary);
+}
+
+.volunteering-card p {
+    color: var(--text-light);
+    line-height: 1.8;
+    margin-bottom: var(--spacing-md);
+}
+
+body.dark-mode .volunteering-card p {
+    color: var(--dark-text-secondary);
+}
+
+.volunteering-card ul {
+    color: var(--text-light);
+    line-height: 1.8;
+    margin-left: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+body.dark-mode .volunteering-card ul {
+    color: var(--dark-text-secondary);
+}
+
+.photo-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-md);
+    margin: var(--spacing-md) 0;
+}
+
+.photo-gallery img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.photo-gallery img:hover {
+    transform: scale(1.05);
+}
+
+.external-link {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+body.dark-mode .external-link {
+    color: var(--primary-light);
+}
+
+.external-link:hover {
+    text-decoration: underline;
+}
+
+.infinite-canvas {
+    width: 100%;
+    height: 600px;
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    overflow: auto;
+    background-color: var(--bg-primary);
+    position: relative;
+}
+
+body.dark-mode .infinite-canvas {
+    border-color: var(--dark-border);
+    background-color: var(--dark-bg-primary);
+}
+
+.canvas-content {
+    padding: var(--spacing-lg);
+    min-width: 1200px;
+    min-height: 1200px;
+}
+
+.canvas-photos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.canvas-photos img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================
+   Hobbies Page Styles
+   ============================================ */
+.hobbies-section {
+    margin-bottom: var(--spacing-xl);
+}
+
+.hobby-card {
+    background-color: var(--bg-secondary);
+    border-radius: 20px;
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+body.dark-mode .hobby-card {
+    background-color: var(--dark-bg-secondary);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.hobby-card h2 {
+    font-family: var(--font-display);
+    color: var(--primary);
+    margin-bottom: var(--spacing-md);
+    font-size: 2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+body.dark-mode .hobby-card h2 {
+    color: var(--primary-light);
+}
+
+.hobby-card h2 i {
+    transition: transform 0.3s ease;
+}
+
+.hobby-card.active h2 i {
+    transform: rotate(180deg);
+}
+
+.hobby-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.hobby-card.active .hobby-content {
+    max-height: 5000px;
+}
+
+.hobby-content p {
+    color: var(--text-light);
+    line-height: 1.8;
+    margin-bottom: var(--spacing-md);
+}
+
+body.dark-mode .hobby-content p {
+    color: var(--dark-text-secondary);
+}
+
+.crochet-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-md);
+    margin: var(--spacing-md) 0;
+}
+
+.crochet-gallery img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.crochet-gallery img:hover {
+    transform: scale(1.05);
+}
+
+.duolingo-widget {
+    background-color: var(--bg-primary);
+    padding: var(--spacing-md);
+    border-radius: 12px;
+    margin: var(--spacing-md) 0;
+    text-align: center;
+}
+
+body.dark-mode .duolingo-widget {
+    background-color: var(--dark-bg-secondary);
+}
+
+.video-embed {
+    width: 100%;
+    max-width: 800px;
+    margin: var(--spacing-md) auto;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.video-embed iframe {
+    width: 100%;
+    height: 450px;
+    border: none;
+}
+
+/* ============================================
+   Resume Page Styles
+   ============================================ */
+.resume-container {
+    text-align: center;
+    padding: var(--spacing-lg) 0;
+}
+
+.resume-container h1 {
+    font-family: var(--font-display);
+    color: var(--primary);
+    margin-bottom: var(--spacing-lg);
+    font-size: 2.5rem;
+}
+
+body.dark-mode .resume-container h1 {
+    color: var(--primary-light);
+}
+
+.resume-pdf {
+    width: 100%;
+    height: 800px;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .resume-pdf {
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================
+   Leadership Page Styles
+   ============================================ */
+.leadership-section {
+    text-align: center;
+    padding: var(--spacing-xl) 0;
+}
+
+.leadership-section h1 {
+    font-family: var(--font-display);
+    color: var(--primary);
+    margin-bottom: var(--spacing-md);
+    font-size: 2.5rem;
+}
+
+body.dark-mode .leadership-section h1 {
+    color: var(--primary-light);
+}
+
+.leadership-section p {
+    color: var(--text-light);
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+body.dark-mode .leadership-section p {
+    color: var(--dark-text-secondary);
+}
+
+/* ============================================
+   Footer
+   ============================================ */
+footer {
+    background-color: var(--bg-secondary);
+    padding: var(--spacing-md) 0;
+    margin-top: var(--spacing-xl);
+    border-top: 1px solid var(--border-color);
+}
+
+body.dark-mode footer {
+    background-color: var(--dark-bg-secondary);
+    border-top-color: var(--dark-border);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-left p {
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+body.dark-mode .footer-left p {
+    color: var(--dark-text-secondary);
+}
+
+.footer-right {
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+.footer-right a {
+    color: var(--primary);
+    font-size: 1.5rem;
+    transition: var(--transition);
+}
+
+body.dark-mode .footer-right a {
+    color: var(--primary-light);
+}
+
+.footer-right a:hover {
+    color: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+body.dark-mode .footer-right a:hover {
+    color: var(--primary);
+}
+
+/* ============================================
+   Responsive Design
+   ============================================ */
+@media (max-width: 768px) {
+    .nav-links {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+    
+    .music-section {
+        grid-template-columns: 1fr;
+    }
+    
+    .home-hero h1 {
+        font-size: 2rem;
+    }
+    
+    .hero-photo {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .photo-gallery,
+    .crochet-gallery {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        text-align: center;
+    }
+}
+
+/* ============================================
+   Utility Classes
+   ============================================ */
+.highlight {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+body.dark-mode .highlight {
+    color: var(--primary-light);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mt-sm { margin-top: var(--spacing-sm); }
+.mt-md { margin-top: var(--spacing-md); }
+.mt-lg { margin-top: var(--spacing-lg); }
+.mb-sm { margin-bottom: var(--spacing-sm); }
+.mb-md { margin-bottom: var(--spacing-md); }
+.mb-lg { margin-bottom: var(--spacing-lg); }
+

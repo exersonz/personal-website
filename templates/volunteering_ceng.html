@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}CENG - Cinty Lin{% endblock %}
+
+{% block content %}
+<div class="volunteering-section">
+    <h1 style="font-family: var(--font-display); color: var(--primary); text-align: center; margin-bottom: var(--spacing-xl); font-size: 2.5rem;">CENG</h1>
+    
+    <div class="volunteering-card">
+        <p>
+            As part of CENG, I've been involved in various marketing and web design projects. 
+            My work includes creating marketing flyers, developing the CENG website, and 
+            working with Framer to build engaging digital experiences.
+        </p>
+        <p>
+            <strong>My Roles:</strong>
+        </p>
+        <ul style="color: var(--text-light); line-height: 1.8; margin-left: var(--spacing-md); margin-bottom: var(--spacing-md);">
+            <li>Marketing materials design and creation</li>
+            <li>Website development and maintenance</li>
+            <li>Framer project design and implementation</li>
+        </ul>
+        
+        <div class="photo-gallery">
+            <img src="{{ url_for('static', filename='images/ceng/flyer1.jpg') }}" alt="CENG Marketing Flyer 1">
+            <img src="{{ url_for('static', filename='images/ceng/flyer2.jpg') }}" alt="CENG Marketing Flyer 2">
+            <img src="{{ url_for('static', filename='images/ceng/website-screenshot.jpg') }}" alt="CENG Website Screenshot">
+            <img src="{{ url_for('static', filename='images/ceng/framer-work.jpg') }}" alt="CENG Framer Work">
+        </div>
+        
+        <p>
+            <a href="https://cengclass.org" target="_blank" class="external-link">Visit CENG Website →</a>
+        </p>
+    </div>
+</div>
+{% endblock %}
+

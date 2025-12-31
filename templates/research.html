@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block title %}Research - Cinty Lin{% endblock %}
+
+{% block content %}
+<div class="research-section">
+    <h1 style="font-family: var(--font-display); color: var(--primary); text-align: center; margin-bottom: var(--spacing-xl); font-size: 2.5rem;">Research</h1>
+    
+    <!-- Lumiere Work -->
+    <div class="research-card">
+        <h2>Video Generation Research</h2>
+        <p>
+            I worked on an exciting video generation project that explores cutting-edge techniques 
+            in creating dynamic video content. This research combines innovative approaches to 
+            video synthesis and generation.
+        </p>
+        <p>
+            <strong>Note:</strong> This work will be updated with the final published version and DOI once available.
+        </p>
+        
+        <!-- PDF Embed - Replace with actual PDF path -->
+        <iframe 
+            src="{{ url_for('static', filename='research/video-generation-paper.pdf') }}" 
+            class="pdf-embed"
+            title="Research Paper PDF">
+        </iframe>
+        
+        <!-- DOI Link - Update when published -->
+        <p style="margin-top: var(--spacing-md);">
+            <strong>DOI:</strong> 
+            <a href="#" class="doi-link">To be updated upon publication</a>
+        </p>
+        
+        <!-- Video Embed -->
+        <div class="video-container">
+            <iframe 
+                src="https://www.youtube.com/embed/YOUR_VIDEO_ID" 
+                title="Research Project Video"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+        </div>
+        
+        <!-- Slideshow Embed (Optional) -->
+        <div class="slideshow-container">
+            <iframe 
+                src="https://docs.google.com/presentation/d/YOUR_SLIDES_ID/embed?start=false&loop=false&delayms=3000" 
+                title="Research Presentation Slides">
+            </iframe>
+        </div>
+    </div>
+    
+    <!-- SRA Paper -->
+    <div class="research-card">
+        <h2>SRA Research Paper</h2>
+        <p>
+            <em>Note: Full content pending consent. Currently showing abstract only.</em>
+        </p>
+        <p>
+            <!-- Abstract content - Update when consent is received -->
+            [Abstract will be displayed here once consent is obtained. For now, this section 
+            contains a placeholder for the research abstract.]
+        </p>
+        <!-- If consent is received, uncomment below and add full content -->
+        <!--
+        <iframe 
+            src="{{ url_for('static', filename='research/sra-paper.pdf') }}" 
+            class="pdf-embed"
+            title="SRA Research Paper PDF">
+        </iframe>
+        -->
+    </div>
+    
+    <!-- Ambitious Research Project -->
+    <div class="research-card">
+        <h2>Future Research Ideas</h2>
+        <p>
+            I'm constantly thinking about new research directions and ambitious projects that 
+            could make meaningful contributions to the field. This section will be updated as 
+            ideas develop and projects take shape.
+        </p>
+        <p>
+            [Future research project ideas and plans will be documented here as they develop.]
+        </p>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Resume - Cinty Lin{% endblock %}
+
+{% block content %}
+<div class="resume-container">
+    <h1>Resume</h1>
+    <p style="color: var(--text-light); margin-bottom: var(--spacing-md);">
+        <em>Note: Please keep this resume updated continuously.</em>
+    </p>
+    <iframe 
+        src="{{ url_for('static', filename='resume/resume.pdf') }}" 
+        class="resume-pdf"
+        title="Cinty Lin Resume">
+    </iframe>
+    <p style="color: var(--text-light); margin-top: var(--spacing-md); font-size: 0.9rem;">
+        If the PDF doesn't load, you can 
+        <a href="{{ url_for('static', filename='resume/resume.pdf') }}" target="_blank" class="external-link">download it here</a>.
+    </p>
+</div>
+{% endblock %}
+
