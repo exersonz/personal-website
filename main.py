@@ -1,12 +1,14 @@
+import os
 from flask import Flask, render_template, request, session, redirect, url_for
 from functools import wraps
 import hashlib
+from dotenv import load_dotenv
+load_dotenv()
 
 app = Flask(__name__)
-app.secret_key = 'your-secret-key-change-this-in-production'  # Change this in production!
+app.secret_key = os.environ.get("FLASK_SECRET_KEY")
 
-# Password hash (croissanti)
-CORRECT_PASSWORD_HASH = hashlib.sha256('croissanti'.encode()).hexdigest()
+CORRECT_PASSWORD_HASH = os.environ.get("PASSWORD_HASH")
 
 def login_required(f):
     @wraps(f)
