@@ -10,15 +10,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <style>
-        /* Custom Cursor Images - Update these paths when you upload your cursor images */
-        /* 
-         * INSTRUCTIONS:
-         * 1. Create folder: static/images/cursors/
-         * 2. Upload your cursor images:
-         *    - hachiware-cursor.png (normal cursor)
-         *    - hachiware-cursor-hover.png (hover cursor)
-         * 3. Update the URLs below to match your file names
-         */
         .cursor-custom {
             background-image: url('{{ url_for("static", filename="images/cursors/hachiware-cursor.png") }}');
         }
