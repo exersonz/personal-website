@@ -1,14 +1,17 @@
-import os
 from flask import Flask, render_template, request, session, redirect, url_for
 from functools import wraps
 import hashlib
-from dotenv import load_dotenv
-load_dotenv()
+import os 
+from datetime import timedelta
 
 app = Flask(__name__)
-app.secret_key = os.environ.get("FLASK_SECRET_KEY")
 
-CORRECT_PASSWORD_HASH = os.environ.get("PASSWORD_HASH")
+app.secret_key = os.environ.get('SECRET_KEY', 'fallback-dev-secret-key')
+
+app.permanent_session_lifetime = timedelta(minutes=15)
+
+raw_password = os.environ.get('SITE_PASSWORD', 'croissanti')
+CORRECT_PASSWORD_HASH = hashlib.sha256(raw_password.encode()).hexdigest()
 
 def login_required(f):
     @wraps(f)
@@ -24,6 +27,7 @@ def login():
         password = request.form.get('password', '')
         password_hash = hashlib.sha256(password.encode()).hexdigest()
         if password_hash == CORRECT_PASSWORD_HASH:
+            session.permanent = True
             session['authenticated'] = True
             return redirect(url_for('index'))
         else:
@@ -41,29 +45,25 @@ def index():
     """Home Page"""
     return render_template('index.html')
 
+# (Rest of your routes remain the same...)
+
 @app.route('/research')
 @login_required
 def research():
     """Research Page"""
     return render_template('research.html')
 
-@app.route('/volunteering/cyber-seniors')
+@app.route('/volunteering')
 @login_required
-def volunteering_cyber_seniors():
-    """Cyber Seniors Volunteering Page"""
-    return render_template('volunteering_cyber_seniors.html')
+def volunteering():
+    """Volunteering Page"""
+    return render_template('volunteering.html')
 
-@app.route('/volunteering/ceng')
+@app.route('/hobbies')
 @login_required
-def volunteering_ceng():
-    """CENG Volunteering Page"""
-    return render_template('volunteering_ceng.html')
-
-@app.route('/volunteering/cip-origami')
-@login_required
-def volunteering_cip_origami():
-    """CIP Origami Workshops Volunteering Page"""
-    return render_template('volunteering_cip_origami.html')
+def hobbies():
+    """Hobbies Main Page"""
+    return render_template('hobbies.html')
 
 @app.route('/hobbies/crochet')
 @login_required

@@ -9,19 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Sen:wght@400..800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <style>
-        .cursor-custom {
-            background-image: url('{{ url_for("static", filename="images/cursors/hachiware-cursor.png") }}');
-        }
-        .cursor-custom.cursor-hover {
-            background-image: url('{{ url_for("static", filename="images/cursors/hachiware-cursor-hover.png") }}');
-        }
-    </style>
     {% block extra_css %}{% endblock %}
 </head>
-<body class="light-mode">
-    <div class="cursor-custom"></div>
-    
+<body class="light-mode">    
     <header>
         <div class="container">
             <nav>
@@ -34,12 +24,7 @@
                     <li><a href="/" class="{% if request.path == '/' %}active{% endif %}">Home</a></li>
                     <li><a href="/research" class="{% if request.path == '/research' %}active{% endif %}">Research</a></li>
                     <li class="dropdown">
-                        <a href="#" class="{% if request.path.startswith('/volunteering') %}active{% endif %}">Volunteering <i class="fas fa-chevron-down"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/volunteering/cyber-seniors">Cyber Seniors</a></li>
-                            <li><a href="/volunteering/ceng">CENG</a></li>
-                            <li><a href="/volunteering/cip-origami">CIP Origami Workshops</a></li>
-                        </ul>
+                        <a href="/volunteering" class="{% if request.path == '/volunteering' %}active{% endif %}">Volunteering <i class="fas fa-chevron-down"></i></a>
                     </li>
                     <li class="dropdown">
                         <a href="#" class="{% if request.path.startswith('/hobbies') %}active{% endif %}">Hobbies <i class="fas fa-chevron-down"></i></a>
@@ -53,12 +38,6 @@
                     <li><a href="/leadership" class="{% if request.path == '/leadership' %}active{% endif %}">Leadership</a></li>
                 </ul>
                 <div class="header-controls">
-                    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-                        <i class="fas fa-moon"></i>
-                    </button>
                     <a href="/logout" class="logout-btn" title="Logout">Logout</a>
                 </div>
             </nav>
@@ -78,7 +57,7 @@
             </div>
             <div class="footer-right">
                 <a href="https://www.instagram.com/croisssssantiiiii/" target="_blank" aria-label="Instagram"><i class="fa-brands fa-square-instagram"></i></a>
-                <a href="mailto:___@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                <a href="mailto:cinty.lin.cinty@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
             </div>
         </div>
     </footer>
@@ -132,39 +111,35 @@
             });
         }
         
-        // Dropdown menu functionality - show on hover
+        // Dropdown menu functionality
         document.addEventListener('DOMContentLoaded', function() {
             const dropdowns = document.querySelectorAll('.dropdown');
-            
             dropdowns.forEach(dropdown => {
                 const link = dropdown.querySelector('a');
                 const menu = dropdown.querySelector('.dropdown-menu');
                 
                 if (link && menu) {
-                    // Show dropdown on hover
-                    dropdown.addEventListener('mouseenter', function() {
-                        dropdown.classList.add('active');
-                    });
-                    
-                    // Hide dropdown when mouse leaves
-                    dropdown.addEventListener('mouseleave', function() {
-                        dropdown.classList.remove('active');
-                    });
-                    
-                    // Prevent default link behavior
                     link.addEventListener('click', function(e) {
                         e.preventDefault();
+                        // Close other dropdowns
+                        dropdowns.forEach(other => {
+                            if (other !== dropdown) {
+                                other.classList.remove('active');
+                            }
+                        });
+                        dropdown.classList.toggle('active');
                     });
                 }
             });
-        });
-
-        // Mobile nav toggle
-        const navToggle = document.getElementById('navToggle');
-        const navLinks = document.querySelector('.nav-links');
-
-        navToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('open');
+            
+            // Close dropdowns when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.dropdown')) {
+                    dropdowns.forEach(dropdown => {
+                        dropdown.classList.remove('active');
+                    });
+                }
+            });
         });
     </script>
     {% block extra_js %}{% endblock %}

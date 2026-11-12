@@ -60,67 +60,9 @@ body {
     overflow-x: hidden;
 }
 
-/* Hide custom cursor on mobile/touch devices */
-@media (hover: hover) and (pointer: fine) {
-    body {
-        cursor: none; /* Hide default cursor only on devices with precise pointing */
-    }
-}
-
 body.dark-mode {
     background-color: var(--dark-bg-primary);
     color: var(--dark-text-primary);
-}
-
-/* ============================================
-   Custom Cursor (Hachiware - Chiikawa Themed)
-   ============================================ */
-/* 
- * TO CHANGE YOUR CURSOR IMAGE:
- * 1. Upload your cursor images to: static/images/cursors/
- *    - Normal cursor: hachiware-cursor.png (or .gif, .svg)
- *    - Hover cursor: hachiware-cursor-hover.png (or .gif, .svg)
- * 2. Update the background-image URLs below to match your file names
- * 3. Adjust the width and height to match your image dimensions
- * 4. The cursor will move instantly (like a normal cursor) - no smooth animation
- */
-
-.cursor-custom {
-    width: 32px;  /* CHANGE THIS to match your cursor image width */
-    height: 32px; /* CHANGE THIS to match your cursor image height */
-    position: fixed;
-    pointer-events: none;
-    z-index: 9999;
-    transform: translate(-50%, -50%);
-    /* 
-     * Cursor image is set in base.html template using Flask's url_for
-     * Update the image paths in templates/base.html in the <style> tag
-     */
-    /* background-image will be set via inline styles in base.html */
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    display: none; /* Hidden by default, shown only on devices with precise pointing */
-    /* No transition for instant movement like normal cursor */
-    transition: none;
-}
-
-/* Show custom cursor only on devices with precise pointing (desktop) */
-@media (hover: hover) and (pointer: fine) {
-    .cursor-custom {
-        display: block;
-    }
-}
-
-/* Hover state - cursor changes when hovering over interactive elements */
-.cursor-custom.cursor-hover {
-    /* 
-     * Hover cursor image is set in base.html template using Flask's url_for
-     * Update the image paths in templates/base.html in the <style> tag
-     */
-    /* background-image will be set via inline styles in base.html */
-    /* Optionally scale up on hover - adjust or remove as needed */
-    transform: translate(-50%, -50%) scale(1.1);
 }
 
 /* ============================================
@@ -213,82 +155,6 @@ body.dark-mode .nav-links a.active {
     color: var(--primary-light);
 }
 
-/* Hamburger button */
-.nav-toggle {
-    display: none;
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    color: var(--text-dark);
-    cursor: pointer;
-}
-
-body.dark-mode .nav-toggle {
-    color: var(--dark-text-primary);
-}
-
-/* Mobile styles */
-@media (max-width: 900px) {
-    nav {
-        flex-wrap: wrap;
-    }
-
-    .nav-toggle {
-        display: block;
-    }
-
-    .nav-links {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background-color: var(--bg-secondary);
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0;
-        padding: var(--spacing-sm) 0;
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(-10px);
-        transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-
-    body.dark-mode .nav-links {
-        background-color: var(--dark-bg-secondary);
-    }
-
-    .nav-links.open {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
-    }
-
-    .nav-links li {
-        width: 100%;
-    }
-
-    .nav-links a {
-        width: 100%;
-        padding: var(--spacing-sm) var(--spacing-md);
-        border-radius: 0;
-    }
-
-    /* Dropdowns on mobile */
-    .dropdown-menu {
-        position: static;
-        box-shadow: none;
-        transform: none;
-        opacity: 1;
-        visibility: visible;
-        display: none;
-        padding-left: var(--spacing-md);
-    }
-
-    .dropdown.active .dropdown-menu {
-        display: block;
-    }
-}
-
 /* Dropdown Menu Styles */
 .dropdown {
     position: relative;
@@ -317,7 +183,6 @@ body.dark-mode .dropdown-menu {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
-.dropdown:hover .dropdown-menu,
 .dropdown.active .dropdown-menu {
     opacity: 1;
     visibility: visible;
@@ -473,26 +338,6 @@ body.dark-mode .bio-section {
 
 body.dark-mode .bio-section h2 {
     color: var(--primary-light);
-}
-
-/* Global heading styles for pages - ensures dark mode works */
-h1[style*="color: var(--primary)"] {
-    color: var(--primary) !important;
-}
-
-body.dark-mode h1[style*="color: var(--primary)"] {
-    color: var(--primary-light) !important;
-}
-
-/* Ensure inline text-light styles work in dark mode */
-p[style*="color: var(--text-light)"],
-ul[style*="color: var(--text-light)"] {
-    color: var(--text-light);
-}
-
-body.dark-mode p[style*="color: var(--text-light)"],
-body.dark-mode ul[style*="color: var(--text-light)"] {
-    color: var(--dark-text-secondary) !important;
 }
 
 .bio-section p {
@@ -697,18 +542,6 @@ body.dark-mode .doi-link {
     margin-bottom: var(--spacing-xl);
 }
 
-.volunteering-section h1 {
-    font-family: var(--font-display);
-    color: var(--primary);
-    text-align: center;
-    margin-bottom: var(--spacing-xl);
-    font-size: 2.5rem;
-}
-
-body.dark-mode .volunteering-section h1 {
-    color: var(--primary-light);
-}
-
 .volunteering-card {
     background-color: var(--bg-secondary);
     border-radius: 20px;
@@ -762,27 +595,6 @@ body.dark-mode .volunteering-card h2 {
 }
 
 body.dark-mode .volunteering-content p {
-    color: var(--dark-text-secondary);
-}
-
-.volunteering-card p {
-    color: var(--text-light);
-    line-height: 1.8;
-    margin-bottom: var(--spacing-md);
-}
-
-body.dark-mode .volunteering-card p {
-    color: var(--dark-text-secondary);
-}
-
-.volunteering-card ul {
-    color: var(--text-light);
-    line-height: 1.8;
-    margin-left: var(--spacing-md);
-    margin-bottom: var(--spacing-md);
-}
-
-body.dark-mode .volunteering-card ul {
     color: var(--dark-text-secondary);
 }
 
