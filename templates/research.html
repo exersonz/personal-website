@@ -1,85 +1,109 @@
 {% extends "base.html" %}
 
+{% block title %}Cinty Lin{% endblock %}
+
 {% block content %}
-<div class="research-section">
-    <h1 style="font-family: var(--font-display); color: var(--periwinkle); text-align: center; margin-bottom: var(--spacing-xl); font-size: 2.5rem;">Research</h1>
-    
-    <!-- Lumiere Work -->
-    <div class="research-card">
-        <h2>Video Generation Research</h2>
-                <p>
-            I worked on an exciting video generation project that explores cutting-edge techniques 
-            in creating dynamic video content. This research combines innovative approaches to 
-            video synthesis and generation.
-                </p>
-                <p>
-            <strong>Note:</strong> This work will be updated with the final published version and DOI once available.
-        </p>
-        
-        <!-- PDF Embed - Replace with actual PDF path -->
-        <iframe 
-            src="{{ url_for('static', filename='research/video-generation-paper.pdf') }}" 
-            class="pdf-embed"
-            title="Research Paper PDF">
-        </iframe>
-        
-        <!-- DOI Link - Update when published -->
-        <p style="margin-top: var(--spacing-md);">
-            <strong>DOI:</strong> 
-            <a href="#" class="doi-link">To be updated upon publication</a>
-                </p>
 
-        <!-- Video Embed -->
-        <div class="video-container">
-            <iframe 
-                src="https://www.youtube.com/embed/YOUR_VIDEO_ID" 
-                title="Research Project Video"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen>
-            </iframe>
-            </div>
+<header class="page-intro">
+    <span class="journal-kicker">page 01 / curiosity</span>
+    <h1>research<span>✳</span></h1>
+</header>
 
-        <!-- Slideshow Embed (Optional) -->
-        <div class="slideshow-container">
-            <iframe 
-                src="https://docs.google.com/presentation/d/YOUR_SLIDES_ID/embed?start=false&loop=false&delayms=3000" 
-                title="Research Presentation Slides">
+<!-- PROJECT 1: NAFLD SHAPE ANALYSIS -->
+
+<section class="research-feature">
+    <span class="journal-kicker">01 / independent research project</span>
+
+    <h2>Fat Droplet Shape Analysis in Fatty Liver Disease</h2>
+
+    <!-- GOOGLE SLIDES -->
+    <div class="research-paper">
+        <span class="research-tape"></span>
+        <h3>presentation slides</h3>
+
+        <div class="research-embed">
+            <iframe
+                src="https://docs.google.com/presentation/d/e/2PACX-1vQ5y24Mb9XJkYS96dQSogkM_6hniuxvUJgOQqGO_lu0p_5JayvDanwOvA7v_Cpo27_v6hytdHawLVZV/pubembed?start=false&amp;loop=false&amp;delayms=3000"
+                title="NAFLD Shape Analysis Presentation" loading="lazy" allowfullscreen>
             </iframe>
         </div>
     </div>
+
+    <!-- YOUTUBE VIDEO -->
+    <div class="research-paper research-video-card">
+        <span class="research-tape"></span>
     
-    <!-- SRA Paper -->
-    <div class="research-card">
-        <h2>SRA Research Paper</h2>
-        <p>
-            <em>Note: Full content pending consent. Currently showing abstract only.</em>
-        </p>
-        <p>
-            <!-- Abstract content - Update when consent is received -->
-            [Abstract will be displayed here once consent is obtained. For now, this section 
-            contains a placeholder for the research abstract.]
-        </p>
-        <!-- If consent is received, uncomment below and add full content -->
-        <!--
-        <iframe 
-            src="{{ url_for('static', filename='research/sra-paper.pdf') }}" 
-            class="pdf-embed"
-            title="SRA Research Paper PDF">
-        </iframe>
-        -->
-            </div>
+        <h3>research video</h3>
     
-    <!-- Ambitious Research Project -->
-    <div class="research-card">
-        <h2>Future Research Ideas</h2>
-        <p>
-            I'm constantly thinking about new research directions and ambitious projects that 
-            could make meaningful contributions to the field. This section will be updated as 
-            ideas develop and projects take shape.
-        </p>
-        <p>
-            [Future research project ideas and plans will be documented here as they develop.]
-        </p>
+        <div class="research-embed">
+            <iframe src="https://www.youtube-nocookie.com/embed/Nsct3nB8sRw"
+                title="Uncovering Hidden NAFLD Subtypes Through Fat Droplet Shape Analysis" loading="lazy"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+            </iframe>
+        </div>
     </div>
-</div>
+</section>
+
+<!-- PROJECT 2: UCSB SRA -->
+
+<section class="research-feature sra-feature">
+    <span class="journal-kicker">02 / summer research</span>
+
+    <h2>UCSB Summer Research Academies</h2>
+    <p class="research-caption">
+        Predictive Modeling Track · Summer 2025
+    </p>
+
+    <article class="research-paper abstract-paper">
+        <span class="research-tape"></span>
+
+        <h3 class="paper-title">
+            Modeling the Effect of Social Media Engagement
+            in the Stock Market Using Dynamic Systems
+            and Machine Learning
+        </h3>
+
+        <p class="paper-authors">
+            Aravind Arivudainambi · Cinty Lin · Michael Qu
+        </p>
+
+        <h4>Abstract</h4>
+
+        <p>
+            The stock market behavior mirrors the success of
+            companies, yet its unpredictable fluctuation remains
+            a challenge for accurate forecasting. Meanwhile,
+            the recent rise of social media has become a huge
+            indicator of success, driven by the emergence of
+            online marketing campaigns and increased online
+            presence. To simplify the chaotic nature of social
+            media, we compress daily engagement metrics of
+            companies into a Media Augmented Composite score
+            (MAC). The evolution of MAC is modeled through a
+            Media Augmented Composite Regression Operator
+            (MACRO). We observed that MACRO heavily reflects
+            companies' stock prices, as supported by our
+            moderate correlation coefficient between the
+            dynamic model and Apple's closing prices. After
+            fitting a random forest network to MACRO, MACs,
+            and stock data, MAC's mean decreased impurity
+            (importance) in stock prediction increases with
+            the testing window, confirming social media's
+            significance in stock forecasting. Collectively,
+            these models and metrics offer insights into
+            quantifying, forecasting, and interpreting the
+            influence of social media engagement on companies'
+            financial performance.
+        </p>
+
+        <p class="paper-keywords">
+            <strong>Keywords:</strong>
+            MAC, MACRO, social media, engagement metric,
+            stock market prediction
+        </p>
+    </article>
+</section>
+
+
 {% endblock %}
