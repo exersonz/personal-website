@@ -1,0 +1,12 @@
+{% macro card(title, caption, suggestion, filename, icon='✳', tilt='') %}
+<article class="memory-card {{ tilt }}">
+  <div class="memory-photo" aria-label="Media placeholder for {{ title }}">
+    <img class="memory-upload" src="{{ url_for('static', filename=filename) }}" alt="{{ title }}" loading="lazy" onload="this.parentElement.classList.add('has-media')" onerror="this.remove()">
+    <span class="memory-icon" aria-hidden="true">{{ icon }}</span>
+    <span class="memory-media-label">DROP IN A PHOTO / LOGO</span>
+    <small class="memory-filename">{{ filename }}</small>
+  </div>
+  <div class="memory-caption"><h3>{{ title }}</h3><p>{{ caption }}</p></div>
+  <details class="editor-note"><summary>media idea</summary><p>{{ suggestion }}</p></details>
+</article>
+{% endmacro %}
