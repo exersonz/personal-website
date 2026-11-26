@@ -1,8 +1,89 @@
-{% extends "base.html" %}{% from '_cards.html' import card %}{% block title %}Cinty Lin{% endblock %}{% block content %}
-<header class="page-intro"><span class="journal-kicker">page 03 / everyday magic</span><h1>little joys <span>✿</span></h1><p>The things I make and do just because they make me happy.</p></header>
+{% extends "base.html" %}
+{% from '_cards.html' import card %}
+
+{% block title %}Cinty Lin{% endblock %}
+
+{% block content %}
+
+<!-- PAGE HEADER -->
+<header class="page-intro">
+    <h1>little joys <span>✿</span></h1>
+</header>
+
+
+<!-- HOBBY CARDS -->
 <div class="memory-grid">
-{{ card('Crochet','A little yarn, a little patience, and something cute at the end.','A photo of your favorite finished crochet piece.','images/joys/crochet.jpg','♡','tilt-left') }}
-{{ card('Bullet journaling','My favorite way to collect thoughts, plans, and memories.','An overhead photo of your favorite journal spread.','images/joys/journaling.jpg','✎','tilt-right') }}
-{{ card('Learning Japanese','A language-learning journey that started with curiosity.','Your handwritten Japanese notes, language-learning journal, or a still from a speaking video.','images/joys/japanese.jpg','あ','tilt-left') }}
-{{ card('Music & little obsessions','The songs and small things I keep coming back to.','A photo of concert memorabilia, playlist cover you created, or a music-themed collage.','images/joys/music.jpg','♫','tilt-right') }}
-</div><div class="journal-outro"><img src="{{ url_for('static', filename='images/doodles/cat-sleep.svg') }}" alt=""/><span>thanks for flipping through ♡</span></div>{% endblock %}
+
+    {{ card(
+    'Crochet',
+    'A little yarn, a little patience, and something cute at the end.',
+    'A photo of your favorite finished crochet piece.',
+    'images/joys/crochet.png',
+    '♡',
+    'tilt-left'
+    ) }}
+
+    {{ card(
+    'Bullet journaling',
+    'My favorite way to collect thoughts, plans, and memories.',
+    'An overhead photo of your favorite journal spread.',
+    'images/joys/journaling.png',
+    '✎',
+    'tilt-right'
+    ) }}
+
+    <!-- LANGUAGE LEARNING / LIVE DUOLINGO STREAK -->
+    <article class="memory-card tilt-left">
+        <div class="memory-photo duo-streak">
+            <span class="duo-label">my duolingo streak</span>
+            <div class="duo-number" id="duo-number">...</div>
+            <span id="duo-caption">days and counting!</span>
+        </div>
+    
+        <div class="memory-caption">
+            <h3>Learning languages あ 한</h3>
+            <p>A little Japanese and a little Korean each day :)</p>
+        </div>
+    </article>
+
+    {{ card(
+    'Music',
+    'The songs I keep coming back to.',
+    'A photo of concert memorabilia, playlist cover you created, or a music-themed collage.',
+    'images/joys/music.png',
+    '♫',
+    'tilt-right'
+    ) }}
+
+</div>
+
+
+<!-- PAGE OUTRO -->
+<div class="journal-outro">
+    <img src="{{ url_for('static', filename='images/doodles/hachiware.png') }}" alt="" />
+    <span>thanks for flipping through ♡</span>
+</div>
+
+
+<!-- DUOLINGO STREAK SCRIPT -->
+<script>
+    fetch("{{ url_for('duolingo_streak') }}")
+        .then(response => response.json())
+        .then(data => {
+            if (Number.isInteger(data.streak)) {
+                document.getElementById("duo-number").textContent =
+                    "🔥 " + data.streak;
+            } else {
+                showFallback();
+            }
+        })
+        .catch(showFallback);
+
+    function showFallback() {
+        document.getElementById("duo-number").textContent = "♡";
+        document.getElementById("duo-caption").textContent =
+            "learning a little every day!";
+    }
+</script>
+
+{% endblock %}
