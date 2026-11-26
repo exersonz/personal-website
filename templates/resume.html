@@ -1,1 +1,17 @@
-{% extends "base.html" %}{% block title %}Cinty Lin{% endblock %}{% block content %}<header class="page-intro"><span class="journal-kicker">the practical page</span><h1>résumé <span>✎</span></h1><p>A quick reference, if you'd like one.</p></header><div class="journal-paper resume-note"><span class="tape"></span><p>Resume PDF goes here if you decide to include it.</p><small>Suggested file: private/resume.pdf. Avoid placing sensitive PDFs in public static folders.</small></div>{% endblock %}
+{% extends "base.html" %}
+{% block title %}Cinty Lin{% endblock %}
+
+{% block content %}
+
+<header class="page-intro">
+    <span class="journal-kicker">the practical page</span>
+    <h1>cinty's résumé <span>✎</span></h1>
+</header>
+
+<div class="journal-paper resume-note">
+    <span class="tape"></span>
+    <iframe class="resume-viewer" src="{{ url_for('static', filename='resume.pdf') }}" title="Cinty Lin's Résumé">
+    </iframe>
+</div>
+
+{% endblock %}

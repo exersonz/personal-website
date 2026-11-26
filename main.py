@@ -10,6 +10,9 @@ from flask import Flask, abort, make_response, redirect, render_template, reques
 from werkzeug.security import check_password_hash
 from dotenv import load_dotenv
 
+import requests
+from flask import jsonify
+
 load_dotenv()
 
 app = Flask(__name__)
@@ -57,7 +60,7 @@ def security_headers(response):
     response.headers['Pragma'] = 'no-cache'
     response.headers['X-Content-Type-Options'] = 'nosniff'
     response.headers['Referrer-Policy'] = 'strict-origin-when-cross-origin'
-    response.headers['X-Frame-Options'] = 'DENY'
+    response.headers['X-Frame-Options'] = 'SAMEORIGIN'
     return response
 
 
@@ -156,6 +159,24 @@ def resume():
 def leadership():
     return render_template('leadership.html')
 
+
+@app.route('/api/duolingo-streak')
+@login_required
+def duolingo_streak():
+    try:
+        response = requests.get(
+            'https://www.duolingo.com/2017-06-30/users',
+            params={'username': 'croissantiii'},
+            timeout=5
+        )
+        response.raise_for_status()
+
+        streak = response.json()['users'][0]['streak']
+
+        return jsonify({'streak': streak})
+
+    except (requests.RequestException, KeyError, IndexError, ValueError):
+        return jsonify({'streak': None})
 
 if __name__ == '__main__':
     app.run(debug=False, host='127.0.0.1', port=8000)

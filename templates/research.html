@@ -5,7 +5,6 @@
 {% block content %}
 
 <header class="page-intro">
-    <span class="journal-kicker">page 01 / curiosity</span>
     <h1>research<span>✳</span></h1>
 </header>
 
@@ -15,6 +14,16 @@
     <span class="journal-kicker">01 / independent research project</span>
 
     <h2>Fat Droplet Shape Analysis in Fatty Liver Disease</h2>
+
+    <!-- RESEARCH PDF -->
+    <div class="research-paper">
+        <span class="research-tape"></span>
+        <h3>research paper</h3>
+    
+        <iframe class="research-pdf" src="{{ url_for('static', filename='research.pdf') }}"
+            title="Fat Droplet Shape Analysis Research Paper">
+        </iframe>
+    </div>
 
     <!-- GOOGLE SLIDES -->
     <div class="research-paper">
